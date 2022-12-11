@@ -1,0 +1,130 @@
+using System.Collections;
+
+namespace DataStructures.AbstractDataTypes.Lists;
+
+public class NikSinglyLinkedList<T> : IEnumerable<T>
+{
+    public class Node
+    {
+        public Node(T value)
+        {
+            Value = value;
+        }
+
+        public Node? Next { get; set; }
+        public T Value { get; }
+    }
+
+    private Node? _head;
+    private int _count;
+
+    public int Count => _count;
+
+    public void AddFirst(T value)
+    {
+        var newNode = new Node(value);
+
+        if (_head is null)
+        {
+            _head = newNode;
+            _count++;
+            return;
+        }
+
+        newNode.Next = _head;
+        _head = newNode;
+    }
+
+    public void AddLast(T value)
+    {
+        var newNode = new Node(value);
+
+        if (_head is null)
+        {
+            _head = newNode;
+            _count++;
+            return;
+        }
+
+        var current = _head;
+        while (current.Next is not null)
+        {
+            current = current.Next;
+        }
+
+        current.Next = newNode;
+        _count++;
+    }
+
+    public bool Contains(T value)
+    {
+        return Find(value) != null;
+    }
+
+    public bool Remove(T value)
+    {
+        if (_head is null)
+            return false;
+        
+        var comparer = EqualityComparer<T>.Default;
+        if (comparer.Equals(_head.Value, value))
+        {
+            _head = _head.Next;
+            _count--;
+            return true;
+        }
+        
+        var current = _head;
+        var prev = _head;
+        while (current is not null)
+        {
+            if (comparer.Equals(current.Value, value))
+            {
+                prev.Next = current.Next;
+                _count--;
+                return true;
+            }
+
+            prev = current;
+            current = current.Next;
+        }
+
+        return false;
+    }
+    
+    private Node? Find(T value)
+    {
+        if (_head is null)
+            return null;
+
+        var current = _head;
+        var comparer = EqualityComparer<T>.Default;
+        while (current is not null)
+        {
+            if (comparer.Equals(current.Value, value))
+                return current;
+
+            current = current.Next;
+        }
+
+        return null;
+    }
+    
+    public IEnumerator<T> GetEnumerator()
+    {
+        if (_head is null)
+            yield break;
+
+        var current = _head;
+        while (current is not null)
+        {
+            yield return current.Value;
+            current = current.Next;
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+}

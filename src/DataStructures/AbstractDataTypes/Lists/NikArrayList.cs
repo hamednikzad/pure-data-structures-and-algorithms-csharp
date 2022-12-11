@@ -1,7 +1,7 @@
 using System.Collections;
 // ReSharper disable All
 
-namespace DataStructures.AbstractDataTypes.Arrays;
+namespace DataStructures.AbstractDataTypes.Lists;
 
 public class NikArrayList
 {

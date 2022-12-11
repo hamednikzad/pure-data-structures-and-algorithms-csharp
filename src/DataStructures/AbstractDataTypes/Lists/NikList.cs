@@ -2,7 +2,7 @@
 
 // ReSharper disable ConvertToAutoPropertyWithPrivateSetter
 
-namespace DataStructures.AbstractDataTypes.Arrays;
+namespace DataStructures.AbstractDataTypes.Lists;
 
 public class NikList<T> : IEnumerable<T>
 {

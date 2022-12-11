@@ -1,8 +1,10 @@
 ﻿using DataStructures.AbstractDataTypes.Arrays;
+using DataStructures.AbstractDataTypes.Lists;
 
 //ArrayUsage();
 //ArrayListUsage();
-ListUsage();
+//ListUsage();
+LinkedListUsage();
 
 
 void ArrayUsage()
@@ -28,8 +30,24 @@ void ListUsage()
         3,
         4
     };
+    
     foreach (var item in list)
     {
         Console.WriteLine(item);
     }
 }
+
+void LinkedListUsage()
+{
+    var ll = new NikSinglyLinkedList<int>();
+    ll.AddLast(5);
+    ll.AddLast(2);
+    ll.AddLast(3);
+
+    foreach (var i in ll)
+    {
+        Console.WriteLine(i);
+    }
+
+    ll.Remove(3);
+} 

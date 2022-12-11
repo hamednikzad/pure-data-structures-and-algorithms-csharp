@@ -8,7 +8,7 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
 
 ### Abstract data types
 - [x] ArrayList
-- [ ] List
+- [x] List
 - [ ] Tuple
 - [ ] Associative array, Map
 - [ ] Multimap
@@ -41,7 +41,7 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
     - [ ] Iliffe vector
     - [ ] Variable-length array
   - [ ] List
-    - [ ] Simple Linked List
+    - [x] Singly Linked List
     - [ ] Doubly Linked List
     - [ ] Circular Linked List
     - [ ] Doubly Circular Linked List
