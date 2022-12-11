@@ -67,7 +67,7 @@ public class NikArrayList
 
     private void ChangeCapacity(int newCapacity)
     {
-        if (newCapacity < -_size)
+        if (newCapacity < _size)
             throw new ArgumentOutOfRangeException(nameof(newCapacity), "Out of range");
 
         if (newCapacity == _capacity)
