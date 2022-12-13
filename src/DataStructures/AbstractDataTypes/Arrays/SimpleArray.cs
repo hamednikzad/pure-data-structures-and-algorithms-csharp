@@ -10,16 +10,16 @@ public static class SimpleArray
             Console.WriteLine(array[i]);
         }
     }
-    
+
     public static void WaysToCreateAnArray()
     {
         string[] simpleInit = new string[4];
 
-        string[] withSizeAndItems = new string[4] {"Item1", "Item2", "Item3", "Item4"};
+        string[] withSizeAndItems = new string[4] { "Item1", "Item2", "Item3", "Item4" };
 
-        string[] withItemsAndTypeWithoutSize = new string[] {"Item1", "Item2", "Item3", "Item4"};
+        string[] withItemsAndTypeWithoutSize = new string[] { "Item1", "Item2", "Item3", "Item4" };
 
-        string[] withOnlyItemsWithoutType = {"Volvo", "BMW", "Ford", "Mazda"};
+        string[] withOnlyItemsWithoutType = { "Volvo", "BMW", "Ford", "Mazda" };
     }
 
     public static void Sort(int[] array)
@@ -31,6 +31,6 @@ public static class SimpleArray
 
     public static void TwoDimensionalArrays()
     {
-        int[,] numbers = { {1, 4, 2}, {3, 6, 8} };
+        int[,] numbers = { { 1, 4, 2 }, { 3, 6, 8 } };
     }
 }

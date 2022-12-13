@@ -4,8 +4,8 @@ using DataStructures.AbstractDataTypes.Lists;
 //ArrayUsage();
 //ArrayListUsage();
 //ListUsage();
-LinkedListUsage();
-
+//SinglyLinkedListUsage();
+DoublyLinkedListUsage();
 
 void ArrayUsage()
 {
@@ -37,7 +37,7 @@ void ListUsage()
     }
 }
 
-void LinkedListUsage()
+void SinglyLinkedListUsage()
 {
     var ll = new NikSinglyLinkedList<int>();
     ll.AddLast(5);
@@ -49,5 +49,21 @@ void LinkedListUsage()
         Console.WriteLine(i);
     }
 
+    ll.Remove(1);
+}
+
+void DoublyLinkedListUsage()
+{
+    var ll = new NikDoublyLinkedList<int>();
+    ll.AddLast(5);
+    ll.AddLast(2);
+    ll.AddLast(3);
+
+    foreach (var i in ll)
+    {
+        Console.WriteLine(i);
+    }
+
+    ll.Insert(3, 1);
     ll.Remove(3);
-} 
+}
