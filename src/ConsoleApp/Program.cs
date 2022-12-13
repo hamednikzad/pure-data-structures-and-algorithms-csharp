@@ -1,11 +1,13 @@
 ﻿using DataStructures.AbstractDataTypes.Arrays;
 using DataStructures.AbstractDataTypes.Lists;
+using DataStructures.AbstractDataTypes.Stacks;
 
 //ArrayUsage();
 //ArrayListUsage();
 //ListUsage();
-SinglyLinkedListUsage();
-DoublyLinkedListUsage();
+//SinglyLinkedListUsage();
+//DoublyLinkedListUsage();
+StackUsage();
 
 void ArrayUsage()
 {
@@ -67,4 +69,19 @@ void DoublyLinkedListUsage()
 
     ll.Insert(3, 1);
     ll.Remove(3);
+}
+
+void StackUsage()
+{
+    var stack = new NikStack<int>();
+    stack.Push(1);
+    stack.Push(2);
+    stack.Push(3);
+    stack.Push(4);
+
+    var last = stack.Peek();
+    var e1 = stack.Pop();
+    var e2 = stack.Pop();
+    var e3 = stack.Pop();
+    var e4 = stack.Pop();
 }

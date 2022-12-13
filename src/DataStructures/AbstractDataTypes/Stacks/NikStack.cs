@@ -3,14 +3,15 @@
 public class NikStack<T>
 {
     private T[] _items;
-    private int _top;
+    private int _top = -1;
     private int _capacity;
     private readonly T[] _emptyArray = Array.Empty<T>();
 
-    public int Count => _size;
+    public int Count => _top + 1;
 
     public int Capacity => _capacity;
-
+    public bool IsEmpty => _top == -1;
+    
     public NikStack()
     {
         _items = _emptyArray;
@@ -40,7 +41,7 @@ public class NikStack<T>
 
     private void ChangeCapacity(int newCapacity)
     {
-        if (newCapacity < -_size)
+        if (newCapacity < Count)
             throw new ArgumentOutOfRangeException(nameof(newCapacity), "Out of range");
 
         if (newCapacity == _capacity)
@@ -50,9 +51,9 @@ public class NikStack<T>
         {
             var newItems = new T[newCapacity];
 
-            if (_size > 0)
+            if (Count > 0)
             {
-                Array.Copy(_items, 0, newItems, 0, _size);
+                Array.Copy(_items, 0, newItems, 0, Count);
             }
 
             _items = newItems;
@@ -67,20 +68,24 @@ public class NikStack<T>
 
     public void Push(T value)
     {
-        if (_size == _items.Length) CheckCapacity(_size + 1);
+        if (Count == _items.Length) CheckCapacity(Count + 1);
 
-        _top++;
-        _size++;
-        _items[_top] = value;
+        _items[++_top] = value;
     }
 
     public T Pop()
     {
-        
+        if (IsEmpty)
+            throw new IndexOutOfRangeException("The Stack is empty");
+
+        return _items[_top--];
     }
 
     public T Peek()
     {
-        
+        if (IsEmpty)
+            throw new IndexOutOfRangeException("The Stack is empty");
+
+        return _items[_top];
     }
 }
