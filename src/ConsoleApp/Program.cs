@@ -4,7 +4,7 @@ using DataStructures.AbstractDataTypes.Lists;
 //ArrayUsage();
 //ArrayListUsage();
 //ListUsage();
-//SinglyLinkedListUsage();
+SinglyLinkedListUsage();
 DoublyLinkedListUsage();
 
 void ArrayUsage()
@@ -49,6 +49,7 @@ void SinglyLinkedListUsage()
         Console.WriteLine(i);
     }
 
+    var last = ll[2];
     ll.Remove(1);
 }
 

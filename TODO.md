@@ -18,6 +18,8 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
 - [ ] Queue (example Priority queue)
 - [ ] Double-ended queue
 - [ ] Graph (example Tree, Heap)
+- [ ] Hash Table
+- [ ] Dictionary
 
 ### Linear  
   - [ ] Array
@@ -42,13 +44,13 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
     - [ ] Variable-length array
   - [ ] List
     - [x] Singly Linked List
-    - [ ] Doubly Linked List
+    - [x] Doubly Linked List
     - [ ] Circular Linked List
     - [ ] Doubly Circular Linked List
     - [ ] header Linked List
     - [ ] Doubly linked list
     - [x] Array list
-    - [ ] Linked list
+    - [x] Linked list
     - [ ] Association list
     - [ ] Self-organizing list
     - [ ] Skip list

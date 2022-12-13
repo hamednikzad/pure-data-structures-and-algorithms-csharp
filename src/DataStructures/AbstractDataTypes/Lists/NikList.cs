@@ -11,11 +11,6 @@ public class NikList<T> : IEnumerable<T>
     private int _capacity;
     private readonly T[] _emptyArray = Array.Empty<T>();
 
-    public void CopyTo(Array array, int index)
-    {
-        throw new NotImplementedException();
-    }
-
     public int Count => _size;
 
     public int Capacity => _capacity;

@@ -88,6 +88,26 @@ public class NikSinglyLinkedList<T> : IEnumerable<T>
 
         _count--;
     }
+
+    public T this[int index]
+    {
+        get
+        {
+            if (_head is null || index < 0 || index > _count)
+                throw new ArgumentOutOfRangeException(nameof(index), "Out of range");
+
+            var i = 0;
+            var current = _head;
+            while (i != index && current is not null)
+            {
+                current = current.Next;
+                
+                i++;
+            }
+
+            return current!.Value;
+        }
+    }
     
     public bool RemoveValue(T value)
     {
