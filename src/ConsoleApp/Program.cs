@@ -7,7 +7,8 @@ using DataStructures.AbstractDataTypes.Stacks;
 //ListUsage();
 //SinglyLinkedListUsage();
 //DoublyLinkedListUsage();
-StackUsage();
+//StackUsage();
+LinkedListStackUsage();
 
 void ArrayUsage()
 {
@@ -16,7 +17,7 @@ void ArrayUsage()
 
 void ArrayListUsage()
 {
-    var arrayList = new NikArrayList();
+    var arrayList = new ArrayList();
     arrayList.Add("Item 1");
     arrayList.Add(2);
     var exists = arrayList.Contains(2);    
@@ -25,7 +26,7 @@ void ArrayListUsage()
 
 void ListUsage()
 {
-    var list = new NikList<int>
+    var list = new DataStructures.AbstractDataTypes.Lists.List<int>
     {
         1,
         2,
@@ -41,7 +42,7 @@ void ListUsage()
 
 void SinglyLinkedListUsage()
 {
-    var ll = new NikSinglyLinkedList<int>();
+    var ll = new SinglyLinkedList<int>();
     ll.AddLast(5);
     ll.AddLast(2);
     ll.AddLast(3);
@@ -57,7 +58,7 @@ void SinglyLinkedListUsage()
 
 void DoublyLinkedListUsage()
 {
-    var ll = new NikDoublyLinkedList<int>();
+    var ll = new DoublyLinkedList<int>();
     ll.AddLast(5);
     ll.AddLast(2);
     ll.AddLast(3);
@@ -73,7 +74,22 @@ void DoublyLinkedListUsage()
 
 void StackUsage()
 {
-    var stack = new NikStack<int>();
+    var stack = new DataStructures.AbstractDataTypes.Stacks.Stack<int>();
+    stack.Push(1);
+    stack.Push(2);
+    stack.Push(3);
+    stack.Push(4);
+
+    var last = stack.Peek();
+    var e1 = stack.Pop();
+    var e2 = stack.Pop();
+    var e3 = stack.Pop();
+    var e4 = stack.Pop();
+}
+
+void LinkedListStackUsage()
+{
+    var stack = new LinkedListStack<int>();
     stack.Push(1);
     stack.Push(2);
     stack.Push(3);

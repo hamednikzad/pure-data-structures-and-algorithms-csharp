@@ -4,7 +4,7 @@
 
 namespace DataStructures.AbstractDataTypes.Lists;
 
-public class NikList<T> : IEnumerable<T>
+public class List<T> : IEnumerable<T>
 {
     private T[] _items;
     private int _size;
@@ -15,13 +15,13 @@ public class NikList<T> : IEnumerable<T>
 
     public int Capacity => _capacity;
 
-    public NikList()
+    public List()
     {
         _items = _emptyArray;
         _capacity = 0;
     }
 
-    public NikList(int capacity)
+    public List(int capacity)
     {
         if (capacity < 0)
             throw new ArgumentOutOfRangeException(nameof(capacity), "Should be non negative");
@@ -31,7 +31,7 @@ public class NikList<T> : IEnumerable<T>
         _capacity = capacity;
     }
 
-    public NikList(IEnumerable<T> collection)
+    public List(IEnumerable<T> collection)
     {
         switch (collection)
         {

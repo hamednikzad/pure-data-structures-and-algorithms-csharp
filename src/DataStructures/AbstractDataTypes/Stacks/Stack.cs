@@ -1,24 +1,24 @@
 ﻿namespace DataStructures.AbstractDataTypes.Stacks;
 
-public class NikStack<T>
+public class Stack<T>
 {
     private T[] _items;
     private int _top = -1;
     private int _capacity;
     private readonly T[] _emptyArray = Array.Empty<T>();
 
-    public int Count => _top + 1;
 
     public int Capacity => _capacity;
     public bool IsEmpty => _top == -1;
+    public int Count => _top + 1;
     
-    public NikStack()
+    public Stack()
     {
         _items = _emptyArray;
         _capacity = 0;
     }
 
-    public NikStack(int capacity)
+    public Stack(int capacity)
     {
         if (capacity < 0)
             throw new ArgumentOutOfRangeException(nameof(capacity), "Should be non negative");

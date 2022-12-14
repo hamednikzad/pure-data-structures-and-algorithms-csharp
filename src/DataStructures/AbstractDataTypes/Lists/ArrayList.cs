@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace DataStructures.AbstractDataTypes.Lists;
 
-public class NikArrayList
+public class ArrayList
 {
     private object?[] _items;
     private int _size;
@@ -13,13 +13,13 @@ public class NikArrayList
 
     public int Capacity => _capacity;
 
-    public NikArrayList()
+    public ArrayList()
     {
         _items = Array.Empty<object>();
         _capacity = 0;
     }
 
-    public NikArrayList(int capacity)
+    public ArrayList(int capacity)
     {
         if (capacity < 0)
             throw new ArgumentOutOfRangeException(nameof(capacity), "Should be non negative");
