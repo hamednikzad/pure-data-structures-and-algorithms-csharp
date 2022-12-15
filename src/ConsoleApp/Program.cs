@@ -1,6 +1,9 @@
-﻿using DataStructures.AbstractDataTypes.Arrays;
+﻿using System.Collections;
+using DataStructures.AbstractDataTypes.Arrays;
 using DataStructures.AbstractDataTypes.Lists;
+using DataStructures.AbstractDataTypes.Queues;
 using DataStructures.AbstractDataTypes.Stacks;
+using ArrayList = DataStructures.AbstractDataTypes.Lists.ArrayList;
 
 //ArrayUsage();
 //ArrayListUsage();
@@ -8,7 +11,8 @@ using DataStructures.AbstractDataTypes.Stacks;
 //SinglyLinkedListUsage();
 //DoublyLinkedListUsage();
 //StackUsage();
-LinkedListStackUsage();
+//LinkedListStackUsage();
+LinedListQueueUsage();
 
 void ArrayUsage()
 {
@@ -100,4 +104,22 @@ void LinkedListStackUsage()
     var e2 = stack.Pop();
     var e3 = stack.Pop();
     var e4 = stack.Pop();
+}
+
+void LinedListQueueUsage()
+{
+    var queue = new LinkedListQueue<int>();
+    queue.Enqueue(1);
+    queue.Enqueue(2);
+    queue.Enqueue(3);
+    queue.Enqueue(4);
+    
+    var first = queue.Peek();
+    var e1 = queue.Dequeue();
+    var e2 = queue.Dequeue();
+    var e3 = queue.Dequeue();
+    var e4 = queue.Dequeue();
+    new HashSet<int>().Add(5);
+    new Hashtable().Add("1", "2");
+    new Dictionary<string, string>().Add("", "");
 }

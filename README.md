@@ -7,3 +7,6 @@ Data structures that have been implemented so far:
 - List List
 - Singly Linked List
 - Doubly Linked List
+- Stack (Array Implementation)
+- LinkedListStack (SinglyLinkedList Implementation)
+- LinkedListQueue (SinglyLinkedList Implementation)

@@ -16,48 +16,77 @@ public class SinglyLinkedList<T> : IEnumerable<T>
         public T Value { get; }
     }
 
-    private Node? _head;
-    private int _count;
+    public Node? Head { get; private set; }
 
-    public Node? Head => _head;
-    public int Count => _count;
-    public bool IsEmpty => _count == 0;
+    public Node? Tail { get; private set; }
+
+    public int Count { get; private set; }
+
+    public bool IsEmpty => Count == 0;
     
     public void AddFirst(T value)
     {
+        if (value is null)
+            throw new ArgumentNullException(nameof(value));
+        
         var newNode = new Node(value);
 
-        if (_head is null)
+        if (Head is null)
         {
-            _head = newNode;
-            _count++;
+            Head = newNode;
+            Tail = newNode;
+            Count++;
             return;
         }
 
-        newNode.Next = _head;
-        _head = newNode;
-        _count++;
+        newNode.Next = Head;
+        Head = newNode;
+        Count++;
     }
 
     public void AddLast(T value)
     {
+        if (value is null)
+            throw new ArgumentNullException(nameof(value));
+        
         var newNode = new Node(value);
-
-        if (_head is null)
+        if (Head is null)
         {
-            _head = newNode;
-            _count++;
+            Head = newNode;
+            Tail = newNode;
+            Count++;
             return;
         }
 
-        var current = _head;
+        Tail!.Next = newNode;
+        Tail = newNode;
+        Count++;
+    }
+
+    private void AddLastOld(T value)
+    {
+        if (value is null)
+            throw new ArgumentNullException(nameof(value));
+        
+        var newNode = new Node(value);
+
+        if (Head is null)
+        {
+            Head = newNode;
+            Tail = newNode;
+            Count++;
+            return;
+        }
+
+        var current = Head;
         while (current.Next is not null)
         {
             current = current.Next;
         }
 
         current.Next = newNode;
-        _count++;
+        Tail = newNode;
+        Count++;
     }
 
     public bool Contains(T value)
@@ -67,19 +96,22 @@ public class SinglyLinkedList<T> : IEnumerable<T>
 
     public T? Remove(int index)
     {
-        if(_head is null || index < 0 || index >= _count)
+        if(Head is null || index < 0 || index >= Count)
             return default(T);
 
         T? node;
         if (index == 0)
         {
-            node = _head.Value;
-            _head = _head.Next;
+            node = Head.Value;
+            Head = Head.Next;
+            
+            if (Count == 1)
+                Tail = null;
         }
         else
         {
-            var current = _head;
-            var prev = _head;
+            var current = Head;
+            var prev = Head;
             var i = 0;
             while (current is not null && i < index)
             {
@@ -90,21 +122,77 @@ public class SinglyLinkedList<T> : IEnumerable<T>
 
             node = current!.Value;
             prev.Next = current!.Next;
+
+            if (index == Count - 1)
+            {
+                Tail = prev;
+            }
         }
 
-        _count--;
+        Count--;
         return node;
+    }
+
+    public void RemoveLast()
+    {
+        Remove(Count - 1);
+    }
+
+    public void RemoveFirst()
+    {
+        Remove(0);
+    }
+    
+    public bool RemoveValue(T value)
+    {
+        if (Head is null)
+            return false;
+        
+        var comparer = EqualityComparer<T>.Default;
+        if (comparer.Equals(Head.Value, value))
+        {
+            Head = Head.Next;
+            
+            if (Count == 1)
+                Tail = null;
+            
+            Count--;
+            return true;
+        }
+        
+        var current = Head;
+        var prev = Head;
+        while (current is not null)
+        {
+            if (comparer.Equals(current.Value, value))
+            {
+                prev.Next = current.Next;
+
+                if (current.Next is null)
+                {
+                    Tail = prev;
+                }
+                
+                Count--;
+                return true;
+            }
+
+            prev = current;
+            current = current.Next;
+        }
+
+        return false;
     }
 
     public T this[int index]
     {
         get
         {
-            if (_head is null || index < 0 || index > _count)
+            if (Head is null || index < 0 || index > Count)
                 throw new ArgumentOutOfRangeException(nameof(index), "Out of range");
 
             var i = 0;
-            var current = _head;
+            var current = Head;
             while (i != index && current is not null)
             {
                 current = current.Next;
@@ -116,43 +204,12 @@ public class SinglyLinkedList<T> : IEnumerable<T>
         }
     }
     
-    public bool RemoveValue(T value)
-    {
-        if (_head is null)
-            return false;
-        
-        var comparer = EqualityComparer<T>.Default;
-        if (comparer.Equals(_head.Value, value))
-        {
-            _head = _head.Next;
-            _count--;
-            return true;
-        }
-        
-        var current = _head;
-        var prev = _head;
-        while (current is not null)
-        {
-            if (comparer.Equals(current.Value, value))
-            {
-                prev.Next = current.Next;
-                _count--;
-                return true;
-            }
-
-            prev = current;
-            current = current.Next;
-        }
-
-        return false;
-    }
-    
     private Node? Find(T value)
     {
-        if (_head is null)
+        if (Head is null)
             return null;
 
-        var current = _head;
+        var current = Head;
         var comparer = EqualityComparer<T>.Default;
         while (current is not null)
         {
@@ -167,10 +224,10 @@ public class SinglyLinkedList<T> : IEnumerable<T>
     
     public IEnumerator<T> GetEnumerator()
     {
-        if (_head is null)
+        if (Head is null)
             yield break;
 
-        var current = _head;
+        var current = Head;
         while (current is not null)
         {
             yield return current.Value;

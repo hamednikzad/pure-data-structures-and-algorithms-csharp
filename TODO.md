@@ -14,8 +14,8 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
 - [ ] Multimap
 - [ ] Set
 - [ ] Multiset (bag)
-- [ ] Stack
-- [ ] Queue (example Priority queue)
+- [x] Stack
+- [x] Queue (example Priority queue)
 - [ ] Double-ended queue
 - [ ] Graph (example Tree, Heap)
 - [ ] Hash Table
@@ -62,8 +62,9 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
     - [ ] Doubly connected edge list also known as half-edge
     - [ ] Difference list
     - [ ] Free list
-  - [ ] Stack
-  - [ ] Queue
+  - [x] Stack
+  - [x] Queue
+    - [x] Linked List Queue
 
 ### Hash-based structures
   -[ ] Bloom filter
