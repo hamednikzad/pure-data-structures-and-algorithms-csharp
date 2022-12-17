@@ -1,9 +1,10 @@
 using System.Collections;
+
 // ReSharper disable All
 
 namespace DataStructures.AbstractDataTypes.Lists;
 
-public class ArrayList
+public class ArrayList : IEnumerable
 {
     private object?[] _items;
     private int _size;
@@ -59,7 +60,7 @@ public class ArrayList
         if (_items.Length >= size)
             return;
         int newCapacity = _items.Length == 0 ? 4 : _items.Length * 2;
-        if ((uint) newCapacity > Array.MaxLength) newCapacity = Array.MaxLength;
+        if ((uint)newCapacity > Array.MaxLength) newCapacity = Array.MaxLength;
         if (newCapacity < size) newCapacity = size;
 
         ChangeCapacity(newCapacity);
@@ -122,7 +123,7 @@ public class ArrayList
 
     public int IndexOf(object? value)
     {
-        return Array.IndexOf((Array) _items, value, 0, _size);
+        return Array.IndexOf((Array)_items, value, 0, _size);
     }
 
     public int IndexOf(object? value, int startIndex)
@@ -130,7 +131,7 @@ public class ArrayList
         if (startIndex > _size)
             throw new ArgumentOutOfRangeException(nameof(startIndex));
 
-        return Array.IndexOf((Array) _items, value, startIndex, _size - startIndex);
+        return Array.IndexOf((Array)_items, value, startIndex, _size - startIndex);
     }
 
     public int IndexOf(object? value, int startIndex, int count)
@@ -141,7 +142,7 @@ public class ArrayList
         if (count < 0 || startIndex > _size - count)
             throw new ArgumentOutOfRangeException(nameof(count));
 
-        return Array.IndexOf((Array) _items, value, startIndex, count);
+        return Array.IndexOf((Array)_items, value, startIndex, count);
     }
 
     public void Insert(int index, object? value)
@@ -208,7 +209,7 @@ public class ArrayList
         if (startIndex >= _size || count > startIndex + 1)
             throw new ArgumentOutOfRangeException(startIndex >= _size ? nameof(startIndex) : nameof(count));
 
-        return Array.LastIndexOf((Array) _items, value, startIndex, count);
+        return Array.LastIndexOf((Array)_items, value, startIndex, count);
     }
 
     public void Remove(object? obj)
@@ -244,7 +245,7 @@ public class ArrayList
             throw new ArgumentException("Invalid length for remove");
 
         if (count <= 0) return;
-        
+
         var i = _size;
         _size -= count;
         if (index < _size)
@@ -263,5 +264,13 @@ public class ArrayList
         object?[] array = new object[_size];
         Array.Copy(_items, array, _size);
         return array;
+    }
+
+    public IEnumerator GetEnumerator()
+    {
+        for (var i = 0; i < _size; i++)
+        {
+            yield return _items[i];
+        }
     }
 }

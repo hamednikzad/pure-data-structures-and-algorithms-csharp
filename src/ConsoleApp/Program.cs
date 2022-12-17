@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using DataStructures.AbstractDataTypes.Arrays;
+﻿using DataStructures.AbstractDataTypes.Arrays;
 using DataStructures.AbstractDataTypes.Lists;
 using DataStructures.AbstractDataTypes.Queues;
 using DataStructures.AbstractDataTypes.Stacks;
@@ -12,7 +11,9 @@ using ArrayList = DataStructures.AbstractDataTypes.Lists.ArrayList;
 //DoublyLinkedListUsage();
 //StackUsage();
 //LinkedListStackUsage();
-LinedListQueueUsage();
+//LinedListQueueUsage();
+HashSetUsage();
+
 
 void ArrayUsage()
 {
@@ -119,7 +120,18 @@ void LinedListQueueUsage()
     var e2 = queue.Dequeue();
     var e3 = queue.Dequeue();
     var e4 = queue.Dequeue();
-    new HashSet<int>().Add(5);
-    new Hashtable().Add("1", "2");
-    new Dictionary<string, string>().Add("", "");
+}
+
+void HashSetUsage()
+{
+    var set = new DataStructures.AbstractDataTypes.Hashes.HashSet<string>();
+    set.Add("Name 1");
+    set.Add("Name 2");
+    set.Add("Name 3");
+    set.Add("Name 4");
+    set.Add("Name 5");
+    set.Add("Name 6");
+
+    var isExist = set.Contains("Name 2");
+    set.Remove("Name 2");
 }

@@ -1,8 +1,9 @@
-﻿using DataStructures.AbstractDataTypes.Lists;
+﻿using System.Collections;
+using DataStructures.AbstractDataTypes.Lists;
 
 namespace DataStructures.AbstractDataTypes.Stacks;
 
-public class LinkedListStack<T>
+public class LinkedListStack<T> : IEnumerable<T>
 {
     private readonly SinglyLinkedList<T> _list;
 
@@ -34,5 +35,18 @@ public class LinkedListStack<T>
             throw new IndexOutOfRangeException("The Stack is empty");
         
         return _list.Head!.Value;
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        foreach (var t in _list)
+        {
+            yield return t;
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }

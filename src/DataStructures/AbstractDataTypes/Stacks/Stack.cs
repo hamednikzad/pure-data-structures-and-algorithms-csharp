@@ -1,6 +1,8 @@
-﻿namespace DataStructures.AbstractDataTypes.Stacks;
+﻿using System.Collections;
 
-public class Stack<T>
+namespace DataStructures.AbstractDataTypes.Stacks;
+
+public class Stack<T> : IEnumerable<T>
 {
     private T[] _items;
     private int _top = -1;
@@ -87,5 +89,18 @@ public class Stack<T>
             throw new IndexOutOfRangeException("The Stack is empty");
 
         return _items[_top];
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        for (var i = _top; i >= 0; i--)
+        {
+            yield return _items[i];
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }

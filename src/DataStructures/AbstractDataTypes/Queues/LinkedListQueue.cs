@@ -1,8 +1,9 @@
-﻿using DataStructures.AbstractDataTypes.Lists;
+﻿using System.Collections;
+using DataStructures.AbstractDataTypes.Lists;
 
 namespace DataStructures.AbstractDataTypes.Queues;
 
-public class LinkedListQueue<T>
+public class LinkedListQueue<T> : IEnumerable<T>
 {
     private readonly SinglyLinkedList<T> _list;
 
@@ -36,5 +37,15 @@ public class LinkedListQueue<T>
             throw new IndexOutOfRangeException("The Queue is empty");
         
         return _list.Head!.Value;
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        return _list.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }
