@@ -88,7 +88,8 @@ public class HashSet<T>
         {
             index = _freeList;
             _freeCount--;
-            _freeList = StartOfFreeList - entries[_freeList].Next;
+            //_freeList = StartOfFreeList - entries[_freeList].Next;
+            throw new NotImplementedException();
         }
         else
         {

@@ -133,5 +133,5 @@ void HashSetUsage()
     set.Add("Name 6");
 
     var isExist = set.Contains("Name 2");
-    set.Remove("Name 2");
+    //set.Remove("Name 2");
 }
