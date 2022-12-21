@@ -1,4 +1,5 @@
 ﻿using DataStructures.AbstractDataTypes.Arrays;
+using DataStructures.AbstractDataTypes.Hashes;
 using DataStructures.AbstractDataTypes.Lists;
 using DataStructures.AbstractDataTypes.Queues;
 using DataStructures.AbstractDataTypes.Stacks;
@@ -12,12 +13,32 @@ using ArrayList = DataStructures.AbstractDataTypes.Lists.ArrayList;
 //StackUsage();
 //LinkedListStackUsage();
 //LinedListQueueUsage();
-HashSetUsage();
+//HashSetUsage();
+//HashTableSeparateChainingUsage();
+HashTableLinearProbingUsage();
 
+
+
+void HashTableLinearProbingUsage()
+{
+    var hashTable = new HashTableLinearProbing<int>(2);
+    for (var i = 0; i < 50; i++)
+    {
+        hashTable.Add(i);
+    }
+    Console.WriteLine($"Table Count:{hashTable.Count}");
+    foreach (var item in hashTable)
+    {
+        Console.WriteLine($"Item:{item}");
+    }
+    hashTable.Remove(2);
+    hashTable.Contains(2);
+    Console.WriteLine($"Table New Count:{hashTable.Count}");
+}
 
 void ArrayUsage()
 {
-    SimpleArray.Sort(new[] {7, 5, 3, 9});  
+    SimpleArray.Sort(new[] { 7, 5, 3, 9 });
 }
 
 void ArrayListUsage()
@@ -25,7 +46,7 @@ void ArrayListUsage()
     var arrayList = new ArrayList();
     arrayList.Add("Item 1");
     arrayList.Add(2);
-    var exists = arrayList.Contains(2);    
+    var exists = arrayList.Contains(2);
     Console.WriteLine($"Element 2 Exists: {exists}");
 }
 
@@ -38,7 +59,7 @@ void ListUsage()
         3,
         4
     };
-    
+
     foreach (var item in list)
     {
         Console.WriteLine(item);
@@ -114,7 +135,7 @@ void LinedListQueueUsage()
     queue.Enqueue(2);
     queue.Enqueue(3);
     queue.Enqueue(4);
-    
+
     var first = queue.Peek();
     var e1 = queue.Dequeue();
     var e2 = queue.Dequeue();
@@ -134,4 +155,20 @@ void HashSetUsage()
 
     var isExist = set.Contains("Name 2");
     //set.Remove("Name 2");
+}
+
+void HashTableSeparateChainingUsage()
+{
+    var hashTable = new HashTableSeparateChaining<int>(4);
+    for (var i = 0; i < 50; i++)
+    {
+        hashTable.Add(i);
+    }
+    Console.Write($"Table Count:{hashTable.Count}");
+    foreach (var item in hashTable)
+    {
+        Console.WriteLine(item);
+    }
+
+    var exists = hashTable.Contains(4);
 }

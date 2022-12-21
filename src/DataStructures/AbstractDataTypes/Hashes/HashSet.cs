@@ -48,6 +48,7 @@ public class HashSet<T>
         var newSize = _capacity * 2;
         Resize(newSize);
     }
+    
     private void Resize(int newSize)
     {
         var newEntries = new Entry[newSize];

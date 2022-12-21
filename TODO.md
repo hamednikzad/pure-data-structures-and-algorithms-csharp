@@ -2,8 +2,6 @@
 
 Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_structures
 
-
-
 ## Data Structures
 
 ### Abstract data types
@@ -18,7 +16,9 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
 - [x] Queue (example Priority queue)
 - [ ] Double-ended queue
 - [ ] Graph (example Tree, Heap)
-- [ ] Hash Table
+- [x] Hash Table
+  - [x] Linear Probing Technique
+  - [x] Separate Chaining Technique
 - [ ] Dictionary
 
 ### Linear  
@@ -74,7 +74,7 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
   -[ ] Dynamic perfect hash table
   -[ ] Hash array mapped trie
   -[ ] Hash list
-  -[ ] Hash table
+  -[x] Hash table
   -[ ] Hash tree
   -[ ] Hash trie
   -[ ] Koorde
