@@ -1,12 +1,21 @@
 # pure-data-structures-and-algorithms-csharp
 Data structures and algorithms implementation in pure csharp
 
-Data structures that have been implemented so far:
+### Data structures that have been implemented so far:
 - Arrays Introduction
-- Array List
-- List List
-- Singly Linked List
-- Doubly Linked List
-- Stack (Array Implementation)
-- LinkedListStack (SinglyLinkedList Implementation)
-- LinkedListQueue (SinglyLinkedList Implementation)
+- Lists:
+  - Array List
+  - List
+  - Singly Linked List
+  - Doubly Linked List
+- Queues
+  - LinkedListQueue (SinglyLinkedList Implementation)
+- Stacks
+  - Stack (Array Implementation)
+  - LinkedListStack (SinglyLinkedList Implementation)
+- Hash Table
+  - HashTable Open Addressing (Linear Probing)
+  - HashTable Chaining (Separate Chaining)
+
+### Sorting algorithms that have been implemented so far:
+  - Bubble Sort
