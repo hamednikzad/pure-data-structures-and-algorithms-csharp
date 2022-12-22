@@ -42,10 +42,22 @@ public static class Sorting
     }
 
     #endregion
+
+    #region Insertion Sort
+
+    private static void InsertionSortUse()
+    {
+        var array = new[] { 6, 3, 5, 2 };
+
+        InsertionSort.Sort(array, true);
+    }
+
+    #endregion
     
     public static void Use()
     {
         //BubbleSortUse();
-        SelectionSortUse();
+        // SelectionSortUse();
+        InsertionSortUse();
     }
 }

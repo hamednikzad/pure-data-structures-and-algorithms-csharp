@@ -21,7 +21,7 @@ public static class SelectionSort
             if (min != i)
                 (array[i], array[min]) = (array[min], array[i]);
             
-            if (print) ArrayHelper.Print($"Step {i}:", array);
+            if (print) ArrayHelper.Print($"Step {i}:\t", array);
 
         }
     }
