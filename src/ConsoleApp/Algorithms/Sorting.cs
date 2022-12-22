@@ -4,27 +4,48 @@ namespace ConsoleApp.Algorithms;
 
 public static class Sorting
 {
-    private static void Sort()
+    #region BubbleSort
+
+    private static void BubbleSort()
     {
         var array = new[] { 6, 3, 5, 2 };
 
-        BubbleSort.Sort(array, true);
+        global::Algorithms.Sorting.BubbleSort.Sort(array, true);
     }
 
-    private static void ImprovedSort()
+    private static void ImprovedBubbleSort()
     {
         var array = new[] { 2,5,3,6};
 
-        BubbleSort.ImprovedSort(array, true);
+        global::Algorithms.Sorting.BubbleSort.ImprovedSort(array, true);
     }
 
-    public static void Use()
+    private static void BubbleSortUse()
     {
         Console.WriteLine("Sort:");
-        Sort();
+        BubbleSort();
         Console.WriteLine("---------------------------------");
         
         Console.WriteLine("ImprovedSort:");
-        ImprovedSort();
+        ImprovedBubbleSort();
+    }
+
+    #endregion
+
+    #region Selection Sort
+
+    private static void SelectionSortUse()
+    {
+        var array = new[] { 6, 3, 5, 2 };
+
+        SelectionSort.Sort(array, true);
+    }
+
+    #endregion
+    
+    public static void Use()
+    {
+        //BubbleSortUse();
+        SelectionSortUse();
     }
 }

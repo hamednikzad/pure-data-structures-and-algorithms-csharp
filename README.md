@@ -19,3 +19,4 @@ Data structures and algorithms implementation in pure csharp
 
 ### Sorting algorithms that have been implemented so far:
   - Bubble Sort
+  - Insertion Sort
