@@ -16,6 +16,8 @@ Data structures and algorithms implementation in pure csharp
 - Hash Table
   - HashTable Open Addressing (Linear Probing)
   - HashTable Chaining (Separate Chaining)
+- Tree
+  - Binary Tree
 
 ### Sorting algorithms that have been implemented so far:
   - Bubble Sort

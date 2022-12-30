@@ -224,5 +224,18 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
 ## Algorithms
 
 - [ ] Sorting
+  - [x] Bubble Sort
+  - [x] Insertion Sort
+  - [x] Selection Sort
+  - [ ] Sell Sort
+  - [ ] Merge Sort
+  - [ ] Heap Sort
+  - [ ] Quick Sort
+  - [ ] Tree Sort
+  - [ ] Bucket Sort
+  - [ ] Counting Sort
+  - [ ] Radix Sort
+  - [ ] Topological Sort
+  - [ ] External Sort
 - [ ] Searching
 - [ ] Recursion

@@ -4,17 +4,15 @@ namespace DataStructures.AbstractDataTypes.Lists;
 
 public class DoublyLinkedList<T> : IEnumerable<T>
 {
-    public class Node
+    private class Node
     {
         public Node(T value)
         {
             Value = value;
             Next = null;
-            Prev = null;
         }
 
         public Node? Next { get; set; }
-        public Node? Prev { get; set; }
         public T Value { get; }
     }
     
@@ -56,7 +54,6 @@ public class DoublyLinkedList<T> : IEnumerable<T>
         }
 
         current.Next = newNode;
-        newNode.Prev = current;
         _count++;
     }
 
@@ -69,10 +66,8 @@ public class DoublyLinkedList<T> : IEnumerable<T>
 
         if (index == 0)
         {
-            newNode.Prev = null;
             newNode.Next = _head;
-            
-            _head.Prev = newNode;
+
             _head = newNode;
         }
         else
@@ -88,11 +83,11 @@ public class DoublyLinkedList<T> : IEnumerable<T>
             }
 
             newNode.Next = current;
-            newNode.Prev = prev;
-            
+
             prev.Next = newNode;
-            if (current != null) 
-                current.Prev = newNode;
+            if (current != null)
+            {
+            }
         }
 
         _count++;
@@ -111,8 +106,9 @@ public class DoublyLinkedList<T> : IEnumerable<T>
         if (index == 0)
         {
             _head = _head.Next;
-            if (_head != null) 
-                _head.Prev = null;
+            if (_head != null)
+            {
+            }
         }
         else
         {
@@ -126,7 +122,6 @@ public class DoublyLinkedList<T> : IEnumerable<T>
                 i++;
             }
             prev.Next = current!.Next;
-            current.Prev = prev;
         }
 
         _count--;
@@ -161,8 +156,10 @@ public class DoublyLinkedList<T> : IEnumerable<T>
         if (comparer.Equals(_head.Value, value))
         {
             _head = _head.Next;
-            if (_head != null) 
-                _head.Prev = null;
+            if (_head != null)
+            {
+            }
+
             _count--;
             return true;
         }
@@ -174,7 +171,6 @@ public class DoublyLinkedList<T> : IEnumerable<T>
             if (comparer.Equals(current.Value, value))
             {
                 prev.Next = current.Next;
-                current.Prev = prev;
                 _count--;
                 return true;
             }

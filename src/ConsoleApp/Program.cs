@@ -13,12 +13,13 @@ public static class Program
     {    
         // Data Structures
             // Arrays.Use();
-            // Hashes.Use();
+            Hashes.Use();
             // Lists.Use();
             // Stacks.Use();
             // Queues.Use();
+            // Trees.Use();
         // Sorting
-        Sorting.Use();
+            // Sorting.Use();
     }
 }
 

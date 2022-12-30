@@ -4,21 +4,6 @@ namespace ConsoleApp.Ds;
 
 public static class Hashes
 {
-    private static void HashSetUsage()
-    {
-        var set = new DataStructures.AbstractDataTypes.Hashes.HashSet<string>();
-        set.Add("Name 1");
-        set.Add("Name 2");
-        set.Add("Name 3");
-        set.Add("Name 4");
-        set.Add("Name 5");
-        set.Add("Name 6");
-
-        var isExist = set.Contains("Name 2");
-        Console.WriteLine(isExist);
-        //set.Remove("Name 2");
-    }
-    
     private static void HashTableLinearProbingUsage()
     {
         var hashTable = new HashTableLinearProbing<int>(2);
@@ -55,7 +40,6 @@ public static class Hashes
 
     public static void Use()
     {
-        HashSetUsage();
         HashTableLinearProbingUsage();
         HashTableSeparateChainingUsage();
     }
