@@ -1,4 +1,5 @@
-﻿using Algorithms.Sorting;
+﻿using Algorithms;
+using Algorithms.Sorting;
 
 namespace ConsoleApp.Algorithms;
 
@@ -22,11 +23,11 @@ public static class Sorting
 
     private static void BubbleSortUse()
     {
-        Console.WriteLine("Sort:");
+        Console.WriteLine("Bubble Sort:");
         BubbleSort();
         Console.WriteLine("---------------------------------");
         
-        Console.WriteLine("ImprovedSort:");
+        Console.WriteLine("Improved Bubble Sort:");
         ImprovedBubbleSort();
     }
 
@@ -53,11 +54,25 @@ public static class Sorting
     }
 
     #endregion
+
+    #region Shell Sort
+
+    private static void ShellSortUse()
+    {
+        var array = new[] { 6, 3, 5, 2 };
+        
+        Console.WriteLine("Shell Sort:");
+        ArrayHelper.Print("Original:\t", array);
+        ShellSort.Sort(array, true);
+    }
+
+    #endregion
     
     public static void Use()
     {
-        //BubbleSortUse();
+        // BubbleSortUse();
         // SelectionSortUse();
-        InsertionSortUse();
+        // InsertionSortUse();
+        ShellSortUse();
     }
 }
