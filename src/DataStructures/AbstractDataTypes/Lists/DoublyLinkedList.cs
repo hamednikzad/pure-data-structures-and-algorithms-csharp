@@ -10,9 +10,11 @@ public class DoublyLinkedList<T> : IEnumerable<T>
         {
             Value = value;
             Next = null;
+            Prev = null;
         }
 
         public Node? Next { get; set; }
+        public Node? Prev { get; set; }
         public T Value { get; }
     }
     
@@ -33,6 +35,7 @@ public class DoublyLinkedList<T> : IEnumerable<T>
         }
 
         newNode.Next = _head;
+        newNode.Prev = null;
         _head = newNode;
     }
 
@@ -53,6 +56,7 @@ public class DoublyLinkedList<T> : IEnumerable<T>
             current = current.Next;
         }
 
+        newNode.Prev = current;
         current.Next = newNode;
         _count++;
     }
@@ -67,7 +71,7 @@ public class DoublyLinkedList<T> : IEnumerable<T>
         if (index == 0)
         {
             newNode.Next = _head;
-
+            _head.Prev = newNode;
             _head = newNode;
         }
         else
@@ -82,11 +86,13 @@ public class DoublyLinkedList<T> : IEnumerable<T>
                 i++;
             }
 
+            newNode.Prev = prev;
             newNode.Next = current;
 
             prev.Next = newNode;
             if (current != null)
             {
+                current.Prev = newNode;
             }
         }
 
@@ -108,6 +114,7 @@ public class DoublyLinkedList<T> : IEnumerable<T>
             _head = _head.Next;
             if (_head != null)
             {
+                _head.Prev = null;
             }
         }
         else
@@ -121,7 +128,8 @@ public class DoublyLinkedList<T> : IEnumerable<T>
                 current = current.Next;
                 i++;
             }
-            prev.Next = current!.Next;
+            prev.Next = current?.Next;
+            if (current is { Next: { } }) current.Next.Prev = prev;
         }
 
         _count--;
@@ -131,7 +139,7 @@ public class DoublyLinkedList<T> : IEnumerable<T>
     {
         get
         {
-            if (_head is null || index < 0 || index > _count)
+            if (_head is null || index < 0 || index >= _count)
                 throw new ArgumentOutOfRangeException(nameof(index), "Out of range");
 
             var i = 0;
@@ -158,6 +166,7 @@ public class DoublyLinkedList<T> : IEnumerable<T>
             _head = _head.Next;
             if (_head != null)
             {
+                _head.Prev = null;
             }
 
             _count--;
@@ -171,6 +180,8 @@ public class DoublyLinkedList<T> : IEnumerable<T>
             if (comparer.Equals(current.Value, value))
             {
                 prev.Next = current.Next;
+                if (current.Next != null) 
+                    current.Next.Prev = prev;
                 _count--;
                 return true;
             }

@@ -188,7 +188,7 @@ public class SinglyLinkedList<T> : IEnumerable<T>
     {
         get
         {
-            if (Head is null || index < 0 || index > Count)
+            if (Head is null || index < 0 || index >= Count)
                 throw new ArgumentOutOfRangeException(nameof(index), "Out of range");
 
             var i = 0;
