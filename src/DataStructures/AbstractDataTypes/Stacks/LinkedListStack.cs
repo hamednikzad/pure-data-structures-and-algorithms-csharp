@@ -34,15 +34,15 @@ public class LinkedListStack<T> : IEnumerable<T>
         if (IsEmpty)
             throw new IndexOutOfRangeException("The Stack is empty");
         
-        return _list.Head!.Value;
+        var headValue = _list.GetHead();
+        var value = ((T)headValue!);
+        
+        return value;
     }
 
     public IEnumerator<T> GetEnumerator()
     {
-        foreach (var t in _list)
-        {
-            yield return t;
-        }
+        return _list.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()

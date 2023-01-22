@@ -2,20 +2,12 @@
 
 namespace ConsoleApp.Ds;
 
-    public struct MyStruct
-    {
-        public int A;
-
-        public MyStruct()
-        {
-            A = 3;
-        }
-    }
 public static class Trees
 {
     private static void BinaryTreeUsage()
     {
-        var bTree = new BinaryTree<int>();
+        var bTree = new BinarySearchTree<int>();
+        Console.WriteLine($"Min:{bTree.Min()}, Max:{bTree.Max()}");
         bTree.Add(10);
         bTree.Add(5);
         bTree.Add(15);
@@ -30,7 +22,11 @@ public static class Trees
         bTree.TraversePostOrder();
         
         bTree.Remove(13);
+
+        var min = bTree.Min();
+        var max = bTree.Max();
         
+        Console.WriteLine($"Min:{min}, Max:{max}");
         bTree.TraversePreOrder();
     }
 

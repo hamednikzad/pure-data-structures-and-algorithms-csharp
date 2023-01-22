@@ -65,11 +65,43 @@ public static class Lists
         ll.Remove(3);
     }
 
+    private static void SortedLinkedListUsage()
+    {
+        var sl = new SortedLinkedList<int>
+        {
+            10,
+            5,
+            6,
+            12,
+            2
+        };
+        
+        Console.Write($"Count: {sl.Count}\n");
+        foreach (var item in sl)
+        {
+            Console.Write(item + ", ");
+        }
+        Console.WriteLine();
+        
+        Console.WriteLine("Contains 12: " + sl.Contains(6));
+        
+        sl.RemoveFirst();
+        sl.RemoveLast();
+        
+        Console.Write($"Count: {sl.Count}\n");
+        foreach (var item in sl)
+        {
+            Console.Write(item + ", ");
+        }
+        Console.WriteLine();
+    }
+
     public static void Use()
     {
-        ArrayListUsage();
-        ListUsage();
-        SinglyLinkedListUsage();
-        DoublyLinkedListUsage();
+        // ArrayListUsage();
+        // ListUsage();
+        // SinglyLinkedListUsage();
+        // DoublyLinkedListUsage();
+        SortedLinkedListUsage();
     }
 }

@@ -8,6 +8,7 @@ Data structures and algorithms implementation in pure csharp
   - List
   - Singly Linked List
   - Doubly Linked List
+  - Sorted Linked List
 - Queues
   - LinkedListQueue (SinglyLinkedList Implementation)
 - Stacks
@@ -17,7 +18,7 @@ Data structures and algorithms implementation in pure csharp
   - HashTable Open Addressing (Linear Probing)
   - HashTable Chaining (Separate Chaining)
 - Tree
-  - Binary Tree
+  - Binary Search Tree
 
 ### Sorting algorithms that have been implemented so far:
   - Bubble Sort

@@ -25,7 +25,8 @@ public class LinkedListQueue<T> : IEnumerable<T>
         if (IsEmpty)
             throw new IndexOutOfRangeException("The Queue is empty");
 
-        var value = _list.Head!.Value;
+        var headValue = _list.GetHead();
+        var value = ((T)headValue!);
         _list.RemoveFirst();
         
         return value;
@@ -36,7 +37,10 @@ public class LinkedListQueue<T> : IEnumerable<T>
         if (IsEmpty)
             throw new IndexOutOfRangeException("The Queue is empty");
         
-        return _list.Head!.Value;
+        var headValue = _list.GetHead();
+        var value = ((T)headValue!);
+        
+        return value;
     }
 
     public IEnumerator<T> GetEnumerator()

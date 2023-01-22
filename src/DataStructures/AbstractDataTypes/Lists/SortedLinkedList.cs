@@ -1,8 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 
 namespace DataStructures.AbstractDataTypes.Lists;
 
-public class SinglyLinkedList<T> : IEnumerable<T>
+public class SortedLinkedList<T> : IEnumerable<T>
 {
     public class Node
     {
@@ -18,53 +18,35 @@ public class SinglyLinkedList<T> : IEnumerable<T>
 
     private Node? Head { get; set; }
 
-    private Node? Tail { get; set; }
-
     public int Count { get; private set; }
 
     public bool IsEmpty => Count == 0;
 
-    public object? GetHead()
-    {
-        return Head == null ? null : Head.Value;
-    }
-
-    public void AddFirst(T value)
+    public void Add(T value)
     {
         if (value is null)
             throw new ArgumentNullException(nameof(value));
-
+        
         var newNode = new Node(value);
-
-        if (Head is null)
+        var comparer = Comparer<T>.Default;
+        
+        if (Head is null || comparer.Compare(Head.Value, newNode.Value) >= 0)
         {
+            newNode.Next = Head;
             Head = newNode;
-            Tail = newNode;
             Count++;
             return;
         }
 
-        newNode.Next = Head;
-        Head = newNode;
-        Count++;
-    }
-
-    public void AddLast(T value)
-    {
-        if (value is null)
-            throw new ArgumentNullException(nameof(value));
-
-        var newNode = new Node(value);
-        if (Head is null)
+        var current = Head;
+        while (current.Next != null && comparer.Compare(current.Next.Value, newNode.Value) < 0)
         {
-            Head = newNode;
-            Tail = newNode;
-            Count++;
-            return;
+            current = current.Next;
         }
 
-        Tail!.Next = newNode;
-        Tail = newNode;
+        newNode.Next = current.Next;
+        current.Next = newNode;
+
         Count++;
     }
 
@@ -75,7 +57,7 @@ public class SinglyLinkedList<T> : IEnumerable<T>
 
     public T? Remove(int index)
     {
-        if (Head is null || index < 0 || index >= Count)
+        if(Head is null || index < 0 || index >= Count)
             return default(T);
 
         T? node;
@@ -83,9 +65,6 @@ public class SinglyLinkedList<T> : IEnumerable<T>
         {
             node = Head.Value;
             Head = Head.Next;
-
-            if (Count == 1)
-                Tail = null;
         }
         else
         {
@@ -100,12 +79,7 @@ public class SinglyLinkedList<T> : IEnumerable<T>
             }
 
             node = current!.Value;
-            prev.Next = current.Next;
-
-            if (index == Count - 1)
-            {
-                Tail = prev;
-            }
+            prev.Next = current!.Next;
         }
 
         Count--;
@@ -121,24 +95,21 @@ public class SinglyLinkedList<T> : IEnumerable<T>
     {
         Remove(0);
     }
-
+    
     public bool RemoveValue(T value)
     {
         if (Head is null)
             return false;
-
+        
         var comparer = EqualityComparer<T>.Default;
         if (comparer.Equals(Head.Value, value))
         {
             Head = Head.Next;
-
-            if (Count == 1)
-                Tail = null;
-
+            
             Count--;
             return true;
         }
-
+        
         var current = Head;
         var prev = Head;
         while (current is not null)
@@ -146,12 +117,7 @@ public class SinglyLinkedList<T> : IEnumerable<T>
             if (comparer.Equals(current.Value, value))
             {
                 prev.Next = current.Next;
-
-                if (current.Next is null)
-                {
-                    Tail = prev;
-                }
-
+                
                 Count--;
                 return true;
             }
@@ -175,14 +141,14 @@ public class SinglyLinkedList<T> : IEnumerable<T>
             while (i != index && current is not null)
             {
                 current = current.Next;
-
+                
                 i++;
             }
 
             return current!.Value;
         }
     }
-
+    
     private Node? Find(T value)
     {
         if (Head is null)
@@ -200,7 +166,7 @@ public class SinglyLinkedList<T> : IEnumerable<T>
 
         return null;
     }
-
+    
     public IEnumerator<T> GetEnumerator()
     {
         if (Head is null)

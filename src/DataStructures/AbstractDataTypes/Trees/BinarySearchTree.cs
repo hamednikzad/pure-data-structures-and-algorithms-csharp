@@ -1,6 +1,6 @@
 ﻿namespace DataStructures.AbstractDataTypes.Trees;
 
-public class BinaryTree<T>
+public class BinarySearchTree<T> where T : struct
 {
     private class Node
     {
@@ -18,6 +18,13 @@ public class BinaryTree<T>
 
     public bool Add(T data)
     {
+        var newNode = new Node(data);
+        if (_root is null)
+        {
+            _root = newNode;
+            return true;
+        }
+
         Node? prev = null, next = _root;
         var comparer = Comparer<T>.Default;
         while (next is not null)
@@ -37,20 +44,12 @@ public class BinaryTree<T>
             }
         }
 
-        var newNode = new Node(data);
-        if (_root is null)
-        {
-            _root = newNode;
-        }
+        var c2 = comparer.Compare(data, prev!.Data);
+        if (c2 < 0)
+            prev.Left = newNode;
         else
         {
-            var c = comparer.Compare(data, prev!.Data);
-            if (c < 0)
-                prev.Left = newNode;
-            else
-            {
-                prev.Right = newNode;
-            }
+            prev.Right = newNode;
         }
 
         return true;
@@ -61,7 +60,7 @@ public class BinaryTree<T>
         _root = Remove(_root, data);
     }
 
-    private Node? Remove(Node? parent, T data)
+    private static Node? Remove(Node? parent, T data)
     {
         if (parent is null)
             return null;
@@ -98,6 +97,16 @@ public class BinaryTree<T>
         return parent;
     }
 
+    public T? Min()
+    {
+        return _root is null ? null : Min(_root);
+    }
+
+    public T? Max()
+    {
+        return _root is null ? null : Max(_root);
+    }
+    
     private static T Min(Node node)
     {
         var min = node.Data;
@@ -109,6 +118,19 @@ public class BinaryTree<T>
         }
 
         return min;
+    }
+
+    private static T Max(Node node)
+    {
+        var max = node.Data;
+
+        while (node.Right != null)
+        {
+            max = node.Right.Data;
+            node = node.Right;
+        }
+
+        return max;
     }
 
     public int GetDepth()
@@ -133,9 +155,9 @@ public class BinaryTree<T>
 
     private static void TraversePreOrder(Node? parent)
     {
-        if (parent is null) 
+        if (parent is null)
             return;
-        
+
         Console.Write(parent.Data + " ");
         TraversePreOrder(parent.Left);
         TraversePreOrder(parent.Right);
@@ -146,19 +168,21 @@ public class BinaryTree<T>
     /// </summary>
     public void TraverseInOrder()
     {
-         Console.Write($"TraverseInOrder(LDR) with Depth {GetDepth()}: ");
+        Console.Write($"TraverseInOrder(LDR) with Depth {GetDepth()}: ");
         TraverseInOrder(_root);
         Console.WriteLine();
     }
-    
+
     private static void TraverseInOrder(Node? parent)
     {
-        if (parent == null) 
-            return;
-        
-        TraverseInOrder(parent.Left);
-        Console.Write(parent.Data + " ");
-        TraverseInOrder(parent.Right);
+        while (true)
+        {
+            if (parent == null) return;
+
+            TraverseInOrder(parent.Left);
+            Console.Write(parent.Data + " ");
+            parent = parent.Right;
+        }
     }
 
     /// <summary>
@@ -170,12 +194,12 @@ public class BinaryTree<T>
         TraversePostOrder(_root);
         Console.WriteLine();
     }
-    
+
     private static void TraversePostOrder(Node? parent)
     {
-        if (parent is null) 
+        if (parent is null)
             return;
-        
+
         TraversePostOrder(parent.Left);
         TraversePostOrder(parent.Right);
         Console.Write(parent.Data + " ");
