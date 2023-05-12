@@ -30,9 +30,24 @@ public static class Trees
         bTree.TraversePreOrder();
     }
 
+    private static void AvlTreeUsage()
+    {
+        var tree = new AvlTree<int>();
+
+        tree.Root = tree.Insert(tree.Root, 10); 
+        tree.Root = tree.Insert(tree.Root, 11); 
+        tree.Root = tree.Insert(tree.Root, 12); 
+        tree.Root = tree.Insert(tree.Root, 13); 
+        tree.Root = tree.Insert(tree.Root, 14); 
+        tree.Root = tree.Insert(tree.Root, 15); 
+        Console.WriteLine("AVL Tree: ");
+        tree.PrintTree(tree.Root);
+    }
+
     public static void Use()
     {
-        BinaryTreeUsage();
+        //BinaryTreeUsage();
+        AvlTreeUsage();
     }
 
 }

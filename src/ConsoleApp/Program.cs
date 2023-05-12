@@ -14,10 +14,10 @@ public static class Program
         // Data Structures
             // Arrays.Use();
             // Hashes.Use();
-            Lists.Use();
+            // Lists.Use();
             // Stacks.Use();
             // Queues.Use();
-            // Trees.Use();
+             Trees.Use();
         // Sorting
             // Sorting.Use();
     }
