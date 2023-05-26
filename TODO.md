@@ -88,8 +88,8 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
   - [ ] Tree  
     - [ ] Binary trees
       - [ ] AA tree
-      - [ ] AVL tree
-      - [ ] Binary search tree
+      - [x] AVL tree
+      - [x] Binary search tree
       - [ ] Binary tree
       - [ ] Cartesian tree
       - [ ] Conc-tree list
@@ -110,7 +110,7 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
       - [ ] WAVL tree
       - [ ] Weight-balanced tree
     - [ ] B-trees
-      - [ ] B-tree
+      - [x] B-tree
       - [ ] B+ tree
       - [ ] B*-tree
       - [ ] Dancing tree

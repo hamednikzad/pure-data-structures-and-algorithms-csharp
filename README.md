@@ -19,6 +19,7 @@ Data structures and algorithms implementation in pure csharp
   - HashTable Chaining (Separate Chaining)
 - Tree
   - Binary Search Tree
+  - AVL
 
 ### Sorting algorithms that have been implemented so far:
   - Bubble Sort

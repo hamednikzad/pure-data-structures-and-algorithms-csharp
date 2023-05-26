@@ -6,101 +6,272 @@ public class AvlTree<T> where T : struct
     {
         public Node? Left, Right;
         public T Data;
-        public int Height;
 
         public Node(T data)
         {
             Data = data;
-            Height = 1;
         }
     }
 
     private Node? _root;
 
-    private static int GetHeight(Node? node)
+    public void Add(T data)
     {
-        return node?.Height ?? 0;
+        var newNode = new Node(data);
+        if (_root is null)
+        {
+            _root = newNode;
+            return;
+        }
+
+        _root = Insert(_root, newNode);
     }
 
-    private static Node RightRotate(Node y)
+    private static Node Insert(Node? current, Node newNode)
     {
-        var x = y.Left;
-        var t2 = x.Right;
-        x.Right = y;
-        y.Left = t2;
-        y.Height = Math.Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
-        x.Height = Math.Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
-        return x;
-    }
+        if (current is null)
+        {
+            current = newNode;
+            return current;
+        }
 
-    private static Node LeftRotate(Node x)
-    {
-        Node y = x.Right;
-        Node T2 = y.Left;
-        y.Left = x;
-        x.Right = T2;
-        x.Height = Math.Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
-        y.Height = Math.Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
-        return y;
-    }
-
-    private static int GetBalance(Node? node)
-    {
-        if (node == null)
-            return 0;
-        
-        return GetHeight(node.Left) - GetHeight(node.Right);
-    }
-
-    public Node Insert(Node node, T key)
-    {
         var comparer = Comparer<T>.Default;
-        if (node == null)
-            return (new Node(key));
+        var c = comparer.Compare(newNode.Data, current.Data);
 
-        var c = comparer.Compare(key, node.Data);
         switch (c)
         {
             case < 0:
-                node.Left = Insert(node.Left, key);
+                current.Left = Insert(current.Left, newNode);
+                current = GetBalancedTree(current);
                 break;
             case > 0:
-                node.Right = Insert(node.Right, key);
+                current.Right = Insert(current.Right, newNode);
+                current = GetBalancedTree(current);
                 break;
             default:
-                return node; //Exists!
+                return current; //Exists!
         }
 
-        node.Height = 1 + Math.Max(GetHeight(node.Left), GetHeight(node.Right));
-        int balance = GetBalance(node);
-        if (balance > 1 && comparer.Compare(key, node.Left.Data) < 0)
-            return RightRotate(node);
-        if (balance < -1 && comparer.Compare(key, node.Right.Data) > 0)
-            return LeftRotate(node);
-        if (balance > 1 && comparer.Compare(key, node.Left.Data) > 0)
-        {
-            node.Left = LeftRotate(node.Left);
-            return RightRotate(node);
-        }
-
-        if (balance < -1 && comparer.Compare(key, node.Right.Data) < 0)
-        {
-            node.Right = RightRotate(node.Right);
-            return LeftRotate(node);
-        }
-
-        return node;
+        return current;
     }
 
-    public void PrintTree(Node root)
+    public void Delete(T target)
     {
-        if (root == null)
-            return;
-        if (root != null)
+        _root = Delete(_root, target);
+    }
+
+    private static Node? Delete(Node? current, T target)
+    {
+        if (current is null)
         {
-            PrintTree(root.Left);
-            Console.Write(root.Data + " ");
-            PrintTree(root.Left);
+            return null;
         }
+
+        var comparer = Comparer<T>.Default;
+        var c = comparer.Compare(target, current.Data);
+
+        switch (c)
+        {
+            case < 0:
+                current.Left = Delete(current.Left, target);
+                if (GetBalanceFactor(current) == -2) //here
+                {
+                    current = GetBalanceFactor(current.Right) <= 0 ? RotateRr(current) : RotateRl(current);
+                }
+
+                break;
+            case > 0:
+                current.Right = Delete(current.Right, target);
+                if (GetBalanceFactor(current) == 2)
+                {
+                    current = GetBalanceFactor(current.Left) >= 0 ? RotateLl(current) : RotateLr(current);
+                }
+
+                break;
+            default: //Found!
+                if (current.Right != null)
+                {
+                    var parent = current.Right;
+                    while (parent.Left != null)
+                    {
+                        parent = parent.Left;
+                    }
+
+                    current.Data = parent.Data;
+                    current.Right = Delete(current.Right, parent.Data);
+                    if (GetBalanceFactor(current) == 2)
+                    {
+                        current = GetBalanceFactor(current.Left) >= 0 ? RotateLl(current) : RotateLr(current);
+                    }
+                }
+                else
+                {
+                    return current.Left;
+                }
+
+                break;
+        }
+
+        return current;
+    }
+
+    public bool IsExist(T key)
+    {
+        if (_root is null)
+            return false;
+        var node = Find(key, _root);
+        if (node is null)
+            return false;
+        
+        var comparer = Comparer<T>.Default;
+        return comparer.Compare(node.Data, key) == 0;
+    }
+
+    private static Node? Find(T target, Node? current)
+    {
+        if (current is null)
+            return null;
+        
+        var comparer = Comparer<T>.Default;
+        var c = comparer.Compare(target, current.Data);
+        return c switch
+        {
+            < 0 => Find(target, current.Left),
+            > 0 => Find(target, current.Right),
+            _ => current
+        };
+    }
+
+    private static Node GetBalancedTree(Node current)
+    {
+        var bFactor = GetBalanceFactor(current);
+        switch (bFactor)
+        {
+            case > 1 when GetBalanceFactor(current.Left) > 0:
+                current = RotateLl(current);
+                break;
+            case > 1:
+                current = RotateLr(current);
+                break;
+            case < -1 when GetBalanceFactor(current.Right) > 0:
+                current = RotateRl(current);
+                break;
+            case < -1:
+                current = RotateRr(current);
+                break;
+        }
+
+        return current;
+    }
+
+    private static Node RotateRr(Node parent)
+    {
+        var pivot = parent.Right;
+        parent.Right = pivot.Left;
+        pivot.Left = parent;
+        return pivot;
+    }
+
+    private static Node RotateLl(Node parent)
+    {
+        var pivot = parent.Left;
+        parent.Left = pivot.Right;
+        pivot.Right = parent;
+        return pivot;
+    }
+
+    private static Node RotateLr(Node parent)
+    {
+        var pivot = parent.Left;
+        parent.Left = RotateRr(pivot);
+        return RotateLl(parent);
+    }
+
+    private static Node RotateRl(Node parent)
+    {
+        var pivot = parent.Right;
+        parent.Right = RotateLl(pivot);
+        return RotateRr(parent);
+    }
+
+    private static int GetBalanceFactor(Node? node)
+    {
+        if (node == null)
+            return 0;
+
+        return GetHeight(node.Left) - GetHeight(node.Right);
+    }
+
+    private static int GetHeight(Node? current)
+    {
+        if (current == null)
+            return 0;
+
+        var left = GetHeight(current.Left);
+        var right = GetHeight(current.Right);
+        return Math.Max(left, right) + 1;
+    }
+
+    private int GetDepth()
+    {
+        return GetDepth(_root);
+    }
+
+    private static int GetDepth(Node? parent)
+    {
+        return parent == null ? 0 : Math.Max(GetDepth(parent.Left), GetDepth(parent.Right)) + 1;
+    }
+
+    public void TraversePreOrder()
+    {
+        Console.WriteLine($"TraversePreOrder(LDR) with Depth {GetDepth()}: ");
+        TraversePreOrder(_root);
+        Console.WriteLine();
+    }
+    
+    public void TraverseInOrder()
+    {
+        Console.WriteLine($"TraverseInOrder(LDR) with Depth {GetDepth()}: ");
+        TraverseInOrder(_root);
+        Console.WriteLine();
+    }
+    
+    public void TraversePostOrder()
+    {
+        Console.WriteLine($"TraversePostOrder(LDR) with Depth {GetDepth()}: ");
+        TraversePostOrder(_root);
+        Console.WriteLine();
+    }
+    
+    private static void TraversePreOrder(Node? parent)
+    {
+        if (parent is null)
+            return;
+
+        Console.Write(parent.Data + " ");
+        TraversePreOrder(parent.Left);
+        TraversePreOrder(parent.Right);
+    }
+    
+    private static void TraverseInOrder(Node? parent)
+    {
+        while (true)
+        {
+            if (parent == null) return;
+
+            TraverseInOrder(parent.Left);
+            Console.Write(parent.Data + " ");
+            parent = parent.Right;
+        }
+    }
+
+    private static void TraversePostOrder(Node? parent)
+    {
+        if (parent is null)
+            return;
+
+        TraversePostOrder(parent.Left);
+        TraversePostOrder(parent.Right);
+        Console.Write(parent.Data + " ");
     }
 }

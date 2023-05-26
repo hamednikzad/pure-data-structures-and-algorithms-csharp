@@ -1,4 +1,5 @@
-﻿using DataStructures.AbstractDataTypes.Trees;
+﻿using System.Diagnostics;
+using DataStructures.AbstractDataTypes.Trees;
 
 namespace ConsoleApp.Ds;
 
@@ -32,16 +33,22 @@ public static class Trees
 
     private static void AvlTreeUsage()
     {
-        var tree = new AvlTree<int>();
-
-        tree.Root = tree.Insert(tree.Root, 10); 
-        tree.Root = tree.Insert(tree.Root, 11); 
-        tree.Root = tree.Insert(tree.Root, 12); 
-        tree.Root = tree.Insert(tree.Root, 13); 
-        tree.Root = tree.Insert(tree.Root, 14); 
-        tree.Root = tree.Insert(tree.Root, 15); 
-        Console.WriteLine("AVL Tree: ");
-        tree.PrintTree(tree.Root);
+        var avlTree = new AvlTree<int>();
+        avlTree.Add(5);
+        avlTree.Add(3);
+        avlTree.Add(7);
+        avlTree.Add(2);
+        avlTree.Add(4);
+        avlTree.Add(13);
+        avlTree.Add(17);
+        avlTree.TraversePreOrder();
+        avlTree.TraverseInOrder();
+        avlTree.TraversePostOrder();
+        Console.WriteLine($"Is 13 Exists: {avlTree.IsExist(13)}");
+        Console.WriteLine("Deleting 7...");
+        avlTree.Delete(7);
+        avlTree.TraverseInOrder();
+        Console.WriteLine($"Is 7 Exists: {avlTree.IsExist(7)}");
     }
 
     public static void Use()
