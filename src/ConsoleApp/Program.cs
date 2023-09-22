@@ -18,12 +18,12 @@ public static class Program
             // Lists.Use();
             // Stacks.Use();
             // Queues.Use();
-            // Trees.Use();
+            Trees.Use();
         // Sorting
             // Sorting.Use();
             
         // Encoding
-            Encoding.Use();
+            // Encoding.Use();
     }
 }
 

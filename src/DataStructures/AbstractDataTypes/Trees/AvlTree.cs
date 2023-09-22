@@ -167,7 +167,7 @@ public class AvlTree<T> where T : struct
     private static Node RotateRr(Node parent)
     {
         var pivot = parent.Right;
-        parent.Right = pivot.Left;
+        parent.Right = pivot!.Left;
         pivot.Left = parent;
         return pivot;
     }
@@ -175,7 +175,7 @@ public class AvlTree<T> where T : struct
     private static Node RotateLl(Node parent)
     {
         var pivot = parent.Left;
-        parent.Left = pivot.Right;
+        parent.Left = pivot!.Right;
         pivot.Right = parent;
         return pivot;
     }
@@ -183,14 +183,14 @@ public class AvlTree<T> where T : struct
     private static Node RotateLr(Node parent)
     {
         var pivot = parent.Left;
-        parent.Left = RotateRr(pivot);
+        parent.Left = RotateRr(pivot!);
         return RotateLl(parent);
     }
 
     private static Node RotateRl(Node parent)
     {
         var pivot = parent.Right;
-        parent.Right = RotateLl(pivot);
+        parent.Right = RotateLl(pivot!);
         return RotateRr(parent);
     }
 

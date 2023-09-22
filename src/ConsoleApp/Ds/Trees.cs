@@ -21,6 +21,7 @@ public static class Trees
         bTree.TraversePreOrder();
         bTree.TraverseInOrder();
         bTree.TraversePostOrder();
+        bTree.TraverseLevelOrder();
         
         bTree.Remove(13);
 
@@ -53,8 +54,8 @@ public static class Trees
 
     public static void Use()
     {
-        //BinaryTreeUsage();
-        AvlTreeUsage();
+        BinaryTreeUsage();
+        //AvlTreeUsage();
     }
 
 }

@@ -106,7 +106,7 @@ public class BinarySearchTree<T> where T : struct
     {
         return _root is null ? null : Max(_root);
     }
-    
+
     private static T Min(Node node)
     {
         var min = node.Data;
@@ -203,5 +203,34 @@ public class BinarySearchTree<T> where T : struct
         TraversePostOrder(parent.Left);
         TraversePostOrder(parent.Right);
         Console.Write(parent.Data + " ");
+    }
+
+    /// <summary>
+    /// Level Order
+    /// </summary>
+    public void TraverseLevelOrder()
+    {
+        Console.Write($"TraverseLevelOrder(LRD) with Depth {GetDepth()}: ");
+        TraverseLevelOrder(_root);
+        Console.WriteLine();
+    }
+
+    private static void TraverseLevelOrder(Node? parent)
+    {
+        if (parent is null)
+            return;
+
+        var q = new Queue<Node>();
+        q.Enqueue(parent);
+        while (q.Count > 0)
+        {
+            var r = q.Dequeue();
+            Console.Write(r.Data + " ");
+            
+            if (r.Left is not null)
+                q.Enqueue(r.Left);
+            if (r.Right is not null)
+                q.Enqueue(r.Right);
+        }
     }
 }
