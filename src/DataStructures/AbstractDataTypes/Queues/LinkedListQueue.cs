@@ -5,12 +5,7 @@ namespace DataStructures.AbstractDataTypes.Queues;
 
 public class LinkedListQueue<T> : IEnumerable<T>
 {
-    private readonly SinglyLinkedList<T> _list;
-
-    public LinkedListQueue()
-    {
-        _list = new SinglyLinkedList<T>();
-    }
+    private readonly SinglyLinkedList<T> _list = new();
 
     public bool IsEmpty => _list.IsEmpty;
     public int Count => _list.Count;
