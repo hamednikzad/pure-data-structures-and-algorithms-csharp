@@ -65,6 +65,7 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
   - [x] Stack
   - [x] Queue
     - [x] Linked List Queue
+    - [x] Circular Queue
 
 ### Hash-based structures
   -[ ] Bloom filter
@@ -206,9 +207,9 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
       - [ ] Expression tree
       - [ ] Log-structured merge-tree
   - [ ] Graph
-    - [ ] Graph
-    - [ ] Adjacency list
-    - [ ] Adjacency matrix
+    - [x] Graph
+    - [x] Adjacency list
+    - [x] Adjacency matrix
     - [ ] Graph-structured stack
     - [ ] Scene graph
     - [ ] Decision tree
@@ -227,7 +228,7 @@ Here is Data Structures base on https://en.wikipedia.org/wiki/List_of_data_struc
   - [x] Bubble Sort
   - [x] Insertion Sort
   - [x] Selection Sort
-  - [ ] Sell Sort
+  - [x] Sell Sort
   - [ ] Merge Sort
   - [ ] Heap Sort
   - [ ] Quick Sort

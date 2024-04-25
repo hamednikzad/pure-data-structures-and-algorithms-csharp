@@ -17,8 +17,9 @@ public static class Program
             // Hashes.Use();
             // Lists.Use();
             // Stacks.Use();
-            Queues.Use();
+            // Queues.Use();
             // Trees.Use();
+            Graphs.Use();
         // Sorting
             // Sorting.Use();
             
